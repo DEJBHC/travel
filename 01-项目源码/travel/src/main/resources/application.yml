@@ -1,0 +1,45 @@
+﻿# Server settings
+server:
+  port: 80
+  address: 0.0.0.0
+
+spring:
+  resources:
+    static-locations:
+      - classpath:resources
+      - classpath:static
+  mvc:
+    static-path-pattern: /**
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/sys_travel?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+      username: root
+      password: root
+      max-active: 20
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helperDialect: mysql
+  #RowBounds第一个参数offset当做页码，默认为false
+  offsetAsPageNum: true
+  #使用RowBounds分页会进行count查询，默认为false
+  rowBoundsWithCount: true
+  #启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页
+  reasonable: false
+  #支持通过Mapper接口参数来传递分页参数
+  supportMethodsArguments: true
+  #设置为true时，如果pageSize=0遍历全部结果，相当于没有分页
+  pageSizeZero: true
+  #映射参数
+  params: count=countSql
+
+logging:
+  level:
+    com.cn.travel: debug
